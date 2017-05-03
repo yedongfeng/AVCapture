@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//返回拍照的图片
+//Block返回图片，image：图片，imageMetadata：图片信息（如经纬度，拍照日期）
 typedef void (^takePhotoBlock)(UIImage *image,NSDictionary *imageMetadata);
 //typedef void (^takePhotoBlock)(NSData *data);
 

@@ -750,7 +750,7 @@
 				DEVELOPMENT_TEAM = 4YP358DB8N;
 				INFOPLIST_FILE = "自定义相册UITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beok.joylife.app.html5.-----UITests";
+				PRODUCT_BUNDLE_IDENTIFIER = AVCapture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = "自定义相册";
 			};
@@ -762,7 +762,7 @@
 				DEVELOPMENT_TEAM = 4YP358DB8N;
 				INFOPLIST_FILE = "自定义相册UITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beok.joylife.app.html5.-----UITests";
+				PRODUCT_BUNDLE_IDENTIFIER = AVCapture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = "自定义相册";
 			};

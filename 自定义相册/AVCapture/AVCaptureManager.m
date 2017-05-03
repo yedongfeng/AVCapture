@@ -8,11 +8,7 @@
 
 #import "AVCaptureManager.h"
 
-
-
 @interface AVCaptureManager ()<CLLocationManagerDelegate>
-
-
 
 /**
  *  判断屏幕方向
@@ -80,14 +76,12 @@
             {
                 _avcaptureOrientation = (AVCaptureVideoOrientation)UIDeviceOrientationPortrait;
             }
-            
             else if (acceleration.y >= 0.75)
             {
                 _avcaptureOrientation = (AVCaptureVideoOrientation)UIDeviceOrientationPortraitUpsideDown;
             }
             else
             {
-                // Consider same as last time
                 _avcaptureOrientation = AVCaptureVideoOrientationPortrait;
             }
         }];
@@ -123,7 +117,6 @@
     
     //更改闪光灯设置时需要将设备锁定，然后再解锁
     [self setCaptureFlashMode:AVCaptureFlashModeOff];
-    
     NSError *error;
     self.input = [[AVCaptureDeviceInput alloc] initWithDevice:self.device error:&error];
     if(error)
@@ -146,10 +139,6 @@
     {
         [self.session addOutput:self.stillImageOutput];
     }
-
-    
-   
-    
 }
 
 #pragma mark -定位delegate

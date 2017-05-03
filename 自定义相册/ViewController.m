@@ -2,8 +2,8 @@
 //  ViewController.m
 //  自定义相册
 //
-//  Created by beok on 17/4/7.
-//  Copyright © 2017年 beok. All rights reserved.
+//  Created by 肖欣然 on 17/4/7.
+//  Copyright © 2017年 肖欣然. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -41,9 +41,7 @@
     [btn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:btn];
-
 }
-
 
 #pragma mark -点击事件，打开自定义的相机
 - (void)click:(UIButton *)sender
@@ -62,7 +60,6 @@
             [lib writeImageToSavedPhotosAlbum:image.CGImage metadata:imageMetadata completionBlock:^(NSURL *assetURL, NSError *error) {
                 NSLog(@"assetURL = %@, error = %@", assetURL, error);
                 lib = nil;
-                
             }];
         }
     }];
@@ -70,10 +67,8 @@
     [self presentViewController:vc animated:YES completion:^{
         
     }];
-     
     
 }
-
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {

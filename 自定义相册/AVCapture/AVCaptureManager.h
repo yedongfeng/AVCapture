@@ -37,12 +37,12 @@
 @property (nonatomic, assign) AVCaptureVideoOrientation     avcaptureOrientation;
 
 /**
- *  device
+ *  相机设备
  */
 @property (nonatomic, strong) AVCaptureDevice               *device;
 
 /**
- *  AVCaptureSession对象来执行输入设备和输出设备之间的数据传递
+ *  输入设备和输出设备之间的数据传递
  */
 @property (nonatomic, strong) AVCaptureSession              *session;
 

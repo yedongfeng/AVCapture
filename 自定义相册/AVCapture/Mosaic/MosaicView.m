@@ -2,8 +2,8 @@
 //  MosaicView.m
 //  自定义相册
 //
-//  Created by beok on 17/4/11.
-//  Copyright © 2017年 beok. All rights reserved.
+//  Created by 肖欣然 on 17/4/11.
+//  Copyright © 2017年 肖欣然. All rights reserved.
 //
 
 #define kBitsPerComponent (8)

@@ -2,17 +2,15 @@
 //  DrawLine.m
 //  JoyHome
 //
-//  Created by BEOK的Mac on 2017/4/1.
-//  Copyright © 2017年 beok. All rights reserved.
+//  Created by 肖欣然 on 2017/4/1.
+//  Copyright © 2017年 肖欣然. All rights reserved.
 //
 
 #import "DrawLine.h"
-
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/EAGLDrawable.h>
 #import <OpenGLES/ES1/glext.h>
 #import <GLKit/GLKit.h>
-
 #import "shaderUtil.h"
 #import "fileUtil.h"
 #import "debug.h"

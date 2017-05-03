@@ -2,8 +2,8 @@
 //  CaptureView.m
 //  自定义相册
 //
-//  Created by beok on 17/4/24.
-//  Copyright © 2017年 beok. All rights reserved.
+//  Created by 肖欣然 on 17/4/24.
+//  Copyright © 2017年 肖欣然. All rights reserved.
 //
 
 //屏幕大小
@@ -33,12 +33,10 @@
     CGFloat _h;
     
     NSData *_jpegData;//保存图片数据
-
-
 }
 
 /**
- *  预览
+ *  预览View
  */
 @property (nonatomic, strong) UIView                        *preview;
 
@@ -171,8 +169,8 @@
         s = imageH / imgViewH;
     }
     
+    //方向处理
     UIImageOrientation or = self.currentImage.imageOrientation;
-    
     CGRect rect;
     if(or == UIImageOrientationUp)
     {
@@ -220,7 +218,7 @@
         if(!self.logoView)
         {
             self.logoView = [[UIView alloc] init];
-            self.logoView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+            self.logoView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
             [self.imageView addSubview:self.logoView];
             
             UILabel *timeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, logoW, 20)];
