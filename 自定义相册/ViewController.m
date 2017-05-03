@@ -50,17 +50,6 @@
 #pragma mark -点击事件，打开自定义的相机
 - (void)click:(UIButton *)sender
 {
-    /*
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    picker.delegate = self;
-    [self presentViewController:picker animated:YES completion:^(void){
-        NSLog(@"Picker View Controller is presented");
-    }];
-    */
-
-
-    
     AVCaptureVC *vc = [[AVCaptureVC alloc] init];
     vc.logoString = @"我在深圳...";
     vc.logoImage = [UIImage imageNamed:@"29x29"];
