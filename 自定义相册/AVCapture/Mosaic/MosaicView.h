@@ -13,14 +13,10 @@
  */
 @interface MosaicView : UIView
 
-/**
- * 要刮的底图.
- */
+//要刮的底图
 @property (nonatomic, strong) UIImage *image;
 
-/**
- * 涂层图片.
- */
+//涂层图片
 @property (nonatomic, strong) UIImage *surfaceImage;
 
 

@@ -47,24 +47,11 @@
     {
         [_manager.session startRunning];
     }
-    
-    /*
-    //监听对焦
-    if(_manager.device == nil)
-    {
-        _manager.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    }
-    
-    int flags = NSKeyValueObservingOptionNew;
-    [_manager.device addObserver:self forKeyPath:@"adjustingFocus" options:flags context:nil];
-     */
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    //[self becomeFirstResponder];
 }
 
 - (BOOL)canBecomeFirstResponder
@@ -83,15 +70,6 @@
     
     //隐藏=YES,显示=NO; Animation:动画效果
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-    
-    /*
-    //监听对焦
-    if(_manager.device == nil)
-    {
-        _manager.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    }
-    [_manager.device removeObserver:self forKeyPath:@"adjustingFocus"];
-     */
 }
 
 - (void)viewDidLoad
@@ -194,11 +172,6 @@
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
     return UIInterfaceOrientationPortrait;
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

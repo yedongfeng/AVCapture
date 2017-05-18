@@ -47,9 +47,9 @@
 - (void)click:(UIButton *)sender
 {
     AVCaptureVC *vc = [[AVCaptureVC alloc] init];
-    vc.logoString = @"我在深圳...";
-    vc.logoImage = [UIImage imageNamed:@"29x29"];
-    vc.isLogo = YES;
+    //vc.logoString = @"我在深圳...";
+    //vc.logoImage = [UIImage imageNamed:@"29x29"];
+    vc.isLogo = NO;
     vc.isLocation = YES;
     [vc takePhoto:^(UIImage *image,NSDictionary *imageMetadata) {
         if(image)

@@ -13,6 +13,10 @@ typedef void (^takePhotoBlock)(UIImage *image,NSDictionary *imageMetadata);
 //typedef void (^takePhotoBlock)(NSData *data);
 
 
+
+//涂鸦功能使用了OpenGL，一些地图，比如高德，也会使用OpenGL绘制，会有冲突；应关闭地图OpenGL相关功能。
+
+
 /**
  * AVFoundation实现自定义相机拍照功能.
  * 基本功能：闪光灯、自拍、设置对焦点以及保存图片经纬度等信息.

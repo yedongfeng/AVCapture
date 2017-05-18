@@ -35,54 +35,34 @@
     NSData *_jpegData;//保存图片数据
 }
 
-/**
- *  预览View
- */
+//预览View
 @property (nonatomic, strong) UIView                        *preview;
 
-/**
- *  预览图层
- */
+//预览图层
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer    *previewLayer;
 
-/**
- *  对焦view
- */
+//对焦view
 @property (nonatomic, strong) UIView                        *focusView;
 
-/**
- *  显示拍照的图片
- */
+//显示拍照的图片
 @property (nonatomic, strong) UIImageView                   *imageView;
 
-/**
- *  logo水印view
- */
+//logo水印view
 @property (nonatomic, strong) UIView                        *logoView;
 
-/**
- *  马赛克view
- */
+//马赛克view
 @property (nonatomic, strong) MosaicView                    *mosaicView;
 
-/**
- *  涂鸦画板
- */
+//涂鸦画板
 @property (nonatomic, strong) DrawLine                      *drawLine;
 
-/**
- * 当前页面的图片
- */
+//当前页面的图片
 @property (nonatomic, strong) UIImage                       *currentImage;
 
-/**
- * openGL绘制的图片（涂鸦的线）
- */
+//openGL绘制的图片（涂鸦的线）
 @property (nonatomic, strong) UIImage                       *glImage;
 
-/**
- *  一些按钮，如拍照、闪光灯、涂鸦等
- */
+//一些按钮，如拍照、闪光灯、涂鸦等
 @property (nonatomic, strong) UIButton *takePhotoBtn;
 @property (nonatomic, strong) UIButton *cancelBtn;
 @property (nonatomic, strong) UIButton *lightBtn;
@@ -151,10 +131,15 @@
     
     if(imageW > imageH)
     {
-        imgViewH = imgViewW * imgViewW / imgViewH;//w * imageH / imageW
+        imgViewH = imgViewW * imgViewW / imgViewH;
     }
+    
     /*
-     bug处理：高度原本是小数，加了约束之后，view的高度会四舍五入取整，比如h=228.55,view实际高度成了229。如果view约束高度比h大，保存图片时会造成四周有留白。暂未找到解决约束的办法，只能先处理高度。
+     bug处理：
+     高度原本是小数，加了约束之后，view的高度会四舍五入取整;
+     比如h=228.55,view实际高度成了229;
+     如果view约束高度比h大，保存图片时会造成四周有留白。
+     暂未找到解决约束的办法，只能先处理高度。
      */
     CGFloat f = imgViewH - (NSInteger)imgViewH;
     imgViewH = imgViewH - f;
@@ -287,26 +272,22 @@
     self.againPhotoBtn.hidden = NO;
     self.drawLineBtn.hidden = NO;
     self.mosaicBtn.hidden = NO;
-    
     self.previewLayer.hidden = YES;
     self.takePhotoBtn.hidden = YES;
     self.cancelBtn.hidden = YES;
     self.lightBtn.hidden = YES;
     self.switchBtn.hidden = YES;
-    
     self.mosaicView.hidden = YES;
     self.drawLine.hidden = YES;
-    
     self.mosaicBtn.userInteractionEnabled = YES;
     self.drawLine.userInteractionEnabled = YES;
     
-    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0/*延迟执行时间*/ * NSEC_PER_SEC));
-    
+    //延迟执行
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
     __weak typeof(self) weakSelf = self;
     dispatch_after(delayTime, dispatch_get_main_queue(), ^{
         weakSelf.currentImage = [weakSelf imageWithlogoImageView];
     });
-    
 }
 
 - (NSString *)dateStr
@@ -521,8 +502,6 @@
         /*
          NSData *imgData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
          _jpegData = [self setGPSToImageByLat:self.cllLocation.coordinate.latitude longi:self.cllLocation.coordinate.longitude imgData:imgData];
-         
-         
          */
         
         _jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
@@ -619,6 +598,8 @@
     //状态清理
     [self.mosaicView clearMosaic];
     self.mosaicBtn.userInteractionEnabled = NO;
+    self.drawLineBtn.userInteractionEnabled = YES;
+    
     [self.mosaicBtn setImage:[UIImage imageNamed:@"icon-mosaic-selected"] forState:UIControlStateNormal];
     [self.drawLineBtn setImage:[UIImage imageNamed:@"icon-ty-normal"] forState:UIControlStateNormal];
     self.mosaicView.hidden = NO;
@@ -647,7 +628,9 @@
 {
     [self.drawLine erase];
     
+    self.drawLineBtn.userInteractionEnabled = NO;
     self.mosaicBtn.userInteractionEnabled = YES;
+
     [self.mosaicBtn setImage:[UIImage imageNamed:@"icon-mosaic-normal"] forState:UIControlStateNormal];
     [self.drawLineBtn setImage:[UIImage imageNamed:@"icon-ty-selected"] forState:UIControlStateNormal];
     
@@ -689,6 +672,9 @@
     self.mosaicBtn.hidden = YES;
     self.drawLineBtn.hidden = YES;
     self.drawLine.hidden = YES;
+    
+    self.drawLineBtn.userInteractionEnabled = YES;
+    self.mosaicBtn.userInteractionEnabled = YES;
     
     [self.mosaicBtn setImage:[UIImage imageNamed:@"icon-mosaic-normal"] forState:UIControlStateNormal];
     [self.drawLineBtn setImage:[UIImage imageNamed:@"icon-ty-normal"] forState:UIControlStateNormal];

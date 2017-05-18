@@ -120,20 +120,20 @@
 
 - (void)dealloc
 {
-    if (self.path) {
+    if (self.path)
+    {
         CGPathRelease(self.path);
     }
 }
 
+#pragma mark -清理马赛克
 - (void)clearMosaic
 {
     self.shapeLayer.path = nil;
     self.path = nil;
 }
 
-/*
- *转换成马赛克,level代表一个点转为多少level*level的正方形
- */
+#pragma mark -转换成马赛克,level代表一个点转为多少level*level的正方形
 - (UIImage *)transToMosaicImage:(UIImage*)orginImage blockLevel:(NSUInteger)level
 {
     //获取BitmapData
@@ -154,16 +154,24 @@
     //这里把BitmapData进行马赛克转换,就是用一个点的颜色填充一个level*level的正方形
     unsigned char pixel[kPixelChannelCount] = {0};
     NSUInteger index,preIndex;
-    for (NSUInteger i = 0; i < height - 1 ; i++) {
-        for (NSUInteger j = 0; j < width - 1; j++) {
+    for (NSUInteger i = 0; i < height - 1 ; i++)
+    {
+        for (NSUInteger j = 0; j < width - 1; j++)
+        {
             index = i * width + j;
-            if (i % level == 0) {
-                if (j % level == 0) {
+            if (i % level == 0)
+            {
+                if (j % level == 0)
+                {
                     memcpy(pixel, bitmapData + kPixelChannelCount*index, kPixelChannelCount);
-                }else{
+                }
+                else
+                {
                     memcpy(bitmapData + kPixelChannelCount*index, pixel, kPixelChannelCount);
                 }
-            } else {
+            }
+            else
+            {
                 preIndex = (i-1)*width +j;
                 memcpy(bitmapData + kPixelChannelCount*index, bitmapData + kPixelChannelCount*preIndex, kPixelChannelCount);
             }
@@ -178,10 +186,11 @@
                                               kBitsPerPixel,
                                               width*kPixelChannelCount ,
                                               colorSpace,
-                                              kCGImageAlphaPremultipliedLast,
+                                              (CGBitmapInfo)kCGImageAlphaPremultipliedLast,
                                               provider,
                                               NULL, NO,
                                               kCGRenderingIntentDefault);
+    
     CGContextRef outputContext = CGBitmapContextCreate(nil,
                                                        width,
                                                        height,
@@ -189,34 +198,48 @@
                                                        width*kPixelChannelCount,
                                                        colorSpace,
                                                        kCGImageAlphaPremultipliedLast);
+    
     CGContextDrawImage(outputContext, CGRectMake(0.0f, 0.0f, width, height), mosaicImageRef);
+    
     CGImageRef resultImageRef = CGBitmapContextCreateImage(outputContext);
+    
     UIImage *resultImage = nil;
-    if([UIImage respondsToSelector:@selector(imageWithCGImage:scale:orientation:)]) {
+    if([UIImage respondsToSelector:@selector(imageWithCGImage:scale:orientation:)])
+    {
         float scale = [[UIScreen mainScreen] scale];
         resultImage = [UIImage imageWithCGImage:resultImageRef scale:scale orientation:UIImageOrientationUp];
-    } else {
+    }
+    else
+    {
         resultImage = [UIImage imageWithCGImage:resultImageRef];
     }
+    
     //释放
-    if(resultImageRef){
+    if(resultImageRef)
+    {
         CFRelease(resultImageRef);
     }
-    if(mosaicImageRef){
+    if(mosaicImageRef)
+    {
         CFRelease(mosaicImageRef);
     }
-    if(colorSpace){
+    if(colorSpace)
+    {
         CGColorSpaceRelease(colorSpace);
     }
-    if(provider){
+    if(provider)
+    {
         CGDataProviderRelease(provider);
     }
-    if(context){
+    if(context)
+    {
         CGContextRelease(context);
     }
-    if(outputContext){
+    if(outputContext)
+    {
         CGContextRelease(outputContext);
     }
+    
     return resultImage;
 }
 

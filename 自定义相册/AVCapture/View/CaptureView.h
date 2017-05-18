@@ -13,16 +13,16 @@
 
 @optional
 
-//取消拍照
+//按钮事件：取消拍照
 - (void)cancelTakePhoto;
 
-//使用照片
+//按钮事件：使用照片
 - (void)confirmImage:(UIImage *)image andImageMetadata:(NSDictionary *)imageMetadata;
 
 @end
 
 /**
- * 显示拍照
+ * 拍照的view，显示拍照图层和涂鸦以及马赛克
  */
 @interface CaptureView : UIView
 
@@ -31,19 +31,13 @@
 @property (nonatomic, weak) id<CaptureViewDelegate>delegate;
 
 
-/**
- * 是否添加水印
- */
+//是否添加水印
 @property (nonatomic, assign) BOOL isLogo;
 
-/**
- * 水印文字
- */
+//水印文字
 @property (nonatomic, strong) NSString *logoString;
 
-/**
- * 水印图片
- */
+//水印图片
 @property (nonatomic, strong) UIImage  *logoImage;
 
 @end
