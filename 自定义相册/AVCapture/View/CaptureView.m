@@ -126,16 +126,6 @@
         imgViewH = imgViewW * imgViewW / imgViewH;
     }
     
-    /*
-     bug处理：
-     高度原本是小数，加了约束之后，view的高度会四舍五入取整;
-     比如h=228.55,view实际高度成了229;
-     如果view约束高度比h大，保存图片时会造成四周有留白。
-     暂未找到解决约束的办法，只能先处理高度。
-     */
-    CGFloat f = imgViewH - (NSInteger)imgViewH;
-    imgViewH = imgViewH - f;
-    
     double s = 0;
     if(imageW / imgViewW < imageH / imgViewH)
     {
