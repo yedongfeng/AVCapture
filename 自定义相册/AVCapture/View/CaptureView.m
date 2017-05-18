@@ -182,6 +182,7 @@
     {
         self.imageView.backgroundColor = [UIColor clearColor];
         self.imageView.image = smallImage;
+        self.currentImage = smallImage;
     }
     
     [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -283,7 +284,7 @@
     self.drawLine.userInteractionEnabled = YES;
     
     //延迟执行
-    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC));
     __weak typeof(self) weakSelf = self;
     dispatch_after(delayTime, dispatch_get_main_queue(), ^{
         weakSelf.currentImage = [weakSelf imageWithlogoImageView];
@@ -626,6 +627,8 @@
 //涂鸦
 - (void)drawLine:(UIButton *)sender
 {
+    self.imageView.backgroundColor = [UIColor redColor];
+    
     [self.drawLine erase];
     
     self.drawLineBtn.userInteractionEnabled = NO;
