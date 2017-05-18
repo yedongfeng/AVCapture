@@ -121,14 +121,6 @@
     CGFloat logoH = 45;
     CGFloat logoW = 0;
     
-    if(!self.imageView)
-    {
-        self.imageView = [[UIImageView alloc] init];
-        [self addSubview:self.imageView];
-        self.imageView.hidden = YES;
-        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    }
-    
     if(imageW > imageH)
     {
         imgViewH = imgViewW * imgViewW / imgViewH;
@@ -144,7 +136,7 @@
     CGFloat f = imgViewH - (NSInteger)imgViewH;
     imgViewH = imgViewH - f;
     
-    CGFloat s = 0;
+    double s = 0;
     if(imageW / imgViewW < imageH / imgViewH)
     {
         s = imageW / imgViewW;
@@ -178,9 +170,17 @@
     UIImage *smallImage = [UIImage imageWithCGImage:subImageRef scale:self.currentImage.scale orientation:or];
     CGImageRelease(subImageRef);
     
+    if(!self.imageView)
+    {
+        self.imageView = [[UIImageView alloc] init];
+        [self addSubview:self.imageView];
+        self.imageView.hidden = YES;
+        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    
     if(smallImage)
     {
-        self.imageView.backgroundColor = [UIColor clearColor];
+        self.imageView.backgroundColor = [UIColor redColor];
         self.imageView.image = smallImage;
         self.currentImage = smallImage;
     }
@@ -288,6 +288,7 @@
     __weak typeof(self) weakSelf = self;
     dispatch_after(delayTime, dispatch_get_main_queue(), ^{
         weakSelf.currentImage = [weakSelf imageWithlogoImageView];
+        UIImageWriteToSavedPhotosAlbum(weakSelf.currentImage, nil, nil, nil);
     });
 }
 
@@ -627,8 +628,6 @@
 //涂鸦
 - (void)drawLine:(UIButton *)sender
 {
-    self.imageView.backgroundColor = [UIColor redColor];
-    
     [self.drawLine erase];
     
     self.drawLineBtn.userInteractionEnabled = NO;
