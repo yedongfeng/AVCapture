@@ -5,19 +5,8 @@ AVFoundation实现自定义相机拍照功能，实现了闪光灯、自拍、�
 
 如高德地图：
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
+    _mapView.openGLESDisabled = YES;//关闭地图的OpenGL
     
-    _mapView.openGLESDisabled = YES;
+    _mapView.openGLESDisabled = NO; //打开地图的OpenGL
 
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    _mapView.openGLESDisabled = NO;
-
-}
 
